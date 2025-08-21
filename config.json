@@ -1,0 +1,40 @@
+[
+  {
+    "name": "SME Money",
+    "url_home": "https://uat.smemoney.vn/vi",
+    "url": "https://uat.smemoney.vn/en/user/sign-in",
+    "success_url": "https://uat.smemoney.vn/en/dashboard"
+  },
+  {
+    "name": "San Tai Chinh",
+    "url_home": "https://uat.santaichinh.smemoney.vn/vi/home",
+    "url": "https://sandbox.santaichinh.vn/sign-in",
+    "success_url": "https://sandbox.santaichinh.vn/dashboard"
+  },
+  {
+    "name": "SME Money",
+    "url_home": "https://uat.smemoney.vn/vi",
+    "url_register": "https://uat.smemoney.vn/en/user/sign-up",
+    "success_url_register": "https://uat.smemoney.vn/en/user/verify-otp?type=auth",
+    "db": {
+      "host": "118.70.67.242",
+      "port": 3377,
+      "user": "dev_verig",
+      "password": "12345678",
+      "database": "uat_verig"
+    }
+  },
+  {
+    "name": "Sàn Tài Chính",
+    "url_home": "https://uat.santaichinh.smemoney.vn/vi/home",
+    "url_register": "https://uat.santaichinh.smemoney.vn/vi/auth/sign-up",
+    "success_url_register": "https://uat.santaichinh.smemoney.vn/vi/auth/verify-otp?type=auth",
+    "db": {
+      "host": "118.70.67.242",
+      "port": 3377,
+      "user": "dev_verig",
+      "password": "12345678",
+      "database": "uat_verig"
+    }
+  }
+]

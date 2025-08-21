@@ -1,0 +1,24 @@
+#login
+email_input_name=email
+password_input_name=password
+submit_button_xpath=//button[contains(text(),'Đăng nhập')]
+
+#register
+account_type_button_xpath=//button[@role='combobox']
+account_type_option_Cá nhân=//span[text()='Cá nhân']
+account_type_option_Doanh nghiệp=//span[text()='Doanh nghiệp']
+account_type_option_Ngân hàng=//div[@role='option']//span[text()='Ngân hàng']
+account_type_option_Quỹ, tổ chức=//div[@role='option']//span[text()='Quỹ, tổ chức']
+tax_code_input_xpath=//input[@name='cmnd']
+company_name_input_xpath=//input[@name='company_name']
+name_input_xpath=//input[@name='fullname']
+phone_input_xpath=//input[@name='phone']
+email_input_xpath=//input[@name='email']
+password_input_xpath=//input[@name='password']
+confirm_password_input_xpath=//input[@name='password_confirmation']
+privacy_checkbox_id=privacy
+register_button_xpath=//button[contains(., 'Đăng ký')]
+error_message_xpath=//p[contains(@id,'-form-item-description') or contains(@class,'ant-form-item-explain') or ancestor::div[contains(@class,'ant-form-item-has-error')]]
+
+
+

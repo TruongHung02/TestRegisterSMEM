@@ -1,0 +1,36 @@
+KẾT QUẢ AUTO TEST:
+
+=== TEST ĐĂNG KÝ - SME MONEY - 2025-08-15 10:34:28.640699 ===
+
+--- Test Case 1 ---
+[PASS] [1] Click nút Đăng ký thành công
+[STEP] Chọn loại tài khoản
+[DEBUG] account_type: 'Doanh nghiệp'
+[PASS] Container tùy chọn đã xuất hiện
+[PASS] Chọn loại tài khoản thành công
+[STEP] Nhập mã số thuế (nếu có trường)
+[INFO] Không thấy autofill tên công ty (bỏ qua)
+[PASS] Nhập tên công ty
+[PASS] Nhập họ tên
+[PASS] Nhập số điện thoại
+[PASS] Nhập email
+[PASS] Nhập mật khẩu
+[PASS] Nhập xác nhận mật khẩu
+[PASS] [1] Click nút Đăng ký
+[INFO] [1] Đăng ký thất bại, thông báo: Trường email đã tồn tại.
+[INFO] [1] DB kiểm tra sau submit: Email đã tồn tại
+
+--- Test Case 2 ---
+[PASS] [2] Click nút Đăng ký thành công
+[STEP] Chọn loại tài khoản
+[DEBUG] account_type: 'Cá nhân'
+[PASS] Container tùy chọn đã xuất hiện
+[PASS] Chọn loại tài khoản thành công
+[PASS] Nhập họ tên
+[PASS] Nhập số điện thoại
+[PASS] Nhập email
+[PASS] Nhập mật khẩu
+[PASS] Nhập xác nhận mật khẩu
+[PASS] [2] Click nút Đăng ký
+[INFO] [2] Đăng ký thất bại, thông báo: Mật khẩu và xác nhận mật khẩu phải trùng nhau.
+[INFO] [2] DB kiểm tra sau submit: Email đã tồn tại
