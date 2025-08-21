@@ -7,7 +7,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-def run_register_smemoney(data_file, config_file, url , result_file):
+def run_register_smemoney(data_file, config_file, result_file):
     # Load config của SME Money (vị trí thứ 3 trong file config)
     with open(config_file, "r", encoding="utf-8") as f:
         config = json.load(f)[2]  # SME Money là hệ thống thứ 3 (index = 2)
@@ -21,12 +21,12 @@ def run_register_smemoney(data_file, config_file, url , result_file):
         result.write(f"\n=== TEST ĐĂNG KÝ - SME MONEY - {datetime.datetime.now()} ===\n")
 
         # Duyệt từng test case
-        for idx, test in enumerate(test_cases, 1):
+        for idx, test_case in enumerate(test_cases, 1):
             result.write(f"\n--- Test Case {idx} ---\n")
 
             driver = webdriver.Chrome()
             try:
-                driver.get(url)
+                driver.get(config["url_home"])
 
                 # ✅ Click nút "Đăng ký" (trên trang chủ nếu cần)
                 WebDriverWait(driver, 10).until(
@@ -44,7 +44,7 @@ def run_register_smemoney(data_file, config_file, url , result_file):
                 WebDriverWait(driver, 10).until(EC.url_contains("sign-in"))
                 driver.find_element(By.XPATH, "//b[text()='Đăng ký ngay']").click()
                 #result_file.write(f"[PASS] [{idx}] Click nút đăng ký thành công\n")
-                run_register(driver, test, fields, config["db"], idx, result)
+                run_register(driver, test_case, fields, config["db"], idx, result)
                 # current_url = driver.current_url
 
                 # Đánh giá kết quả

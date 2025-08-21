@@ -4,5 +4,4 @@ TC02|Sai mật khẩu|phamhuuvinh@gmail.com|abcd@123|fail
 TC03|Email không hợp lệ|phamhuu|abcd|fail
 
 #register
-TC04|Trùng email|Doanh nghiệp|0302458963|Công ty test|Trần Thị B|0987654652|duongminhthuy@yopmail.com|Xyz@5678|Xyz@5678|fail
-TC05|Không khớp mật khẩu|Cá nhân|none|none|Nguyễn Văn A|0352114588|thanhhuyen040404@gmail.com|Xyz@5678|none|fail
+TC06|Thành công|Doanh nghiệp|0302458963|Doanh nghiệp OTP|Dương Thị Minh Thúi|0352114588|duongminhthui005@yopmail.com|Xyz@5678|Xyz@5678|success

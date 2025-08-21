@@ -15,6 +15,6 @@ with open(result, "w", encoding="utf-8") as f:
 #
 #run_login_smemoney(data_file, config, result)
 #run_login_santaichinh(data_file, config, result)
-run_register_smemoney(data_file, config, url, result)
+run_register_smemoney(data_file, config, result)
 
-print("✅ Đã chạy xong toàn bộ test cho cả 2 hệ thống!")
+# print("✅ Đã chạy xong toàn bộ test cho cả 2 hệ thống!")

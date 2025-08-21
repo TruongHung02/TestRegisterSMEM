@@ -1,7 +1,7 @@
 import pymysql
 from pymysql.cursors import DictCursor
 
-def read_data(file_path, data_type):
+def read_data(file_path, data_type) -> list[dict[str, str]]:
     data = []  # Tạo danh sách để lưu các test case
 
     with open(file_path, 'r', encoding='utf-8') as f:
@@ -77,7 +77,7 @@ def check_duplicate_in_db(test_data, db_config):
             user=db_config["user"],
             password=db_config["password"],
             database=db_config["database"],
-            cursorclass=pymysql.cursors.DictCursor
+            cursorclass=DictCursor
         )
 
         with connection.cursor() as cursor:
