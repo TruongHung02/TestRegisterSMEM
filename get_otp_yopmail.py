@@ -7,7 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 
 
-def get_yopmail_otp(email_address: str) -> str | None:
+def get_yopmail_otp(email_address: str, email_subject: str = None) -> str | None:
     """
     Sử dụng Selenium để truy cập Yopmail và lấy mã OTP từ email mới nhất.
     Phiên bản đã được cập nhật để chủ động click vào email mới nhất.
@@ -21,9 +21,9 @@ def get_yopmail_otp(email_address: str) -> str | None:
     options = webdriver.ChromeOptions()
     # options.add_argument("--headless")
     options.add_argument("--log-level=3")
-    # options.add_argument("--headless")  # bật chế độ headless
+    options.add_argument("--headless")  # bật chế độ headless
     options.add_argument("--disable-gpu")  # khuyến nghị cho Windows
-    options.add_argument("--window-size=1920,1080")  # đặt kích thước cửa sổ
+    # options.add_argument("--window-size=1920,1080")  # đặt kích thước cửa sổ
     driver = webdriver.Chrome(options=options)
     wait = WebDriverWait(driver, 20)
 
@@ -69,11 +69,23 @@ def get_yopmail_otp(email_address: str) -> str | None:
         # print("✅ Đã chuyển sang khung chứa danh sách email.")
 
         # 5. # MỚI: Chờ và click vào email đầu tiên trong danh sách (email mới nhất)
-        latest_email = wait.until(
-            EC.element_to_be_clickable((By.CSS_SELECTOR, "div.m"))
-        )
-        latest_email.click()
-        # print("✅ Đã click vào email mới nhất.")
+        target_email_xpath = ""
+        if email_subject:
+            # XPath này tìm một email (div.m) chứa một div con có class 'lms' và có nội dung text chính xác
+            target_email_xpath = f"//div[@class='m' and .//div[@class='lms' and text()='{email_subject}']] "
+        else:
+            # Nếu không có tiêu đề, chỉ cần tìm email đầu tiên (mới nhất)
+            print("🔎 Không có tiêu đề được chỉ định, đang tìm email mới nhất...")
+            target_email_xpath = "//div[@class='m']"
+
+        try:
+            # Chờ và click vào email mục tiêu
+            target_email = wait.until(EC.element_to_be_clickable((By.XPATH, target_email_xpath)))
+            target_email.click()
+            # print("✅ Đã click vào email mục tiêu.")
+        except TimeoutException:
+            print(f"❌ Không tìm thấy email phù hợp trong hộp thư.")
+            return None
 
         # 6. # MỚI: Chuyển về context mặc định trước khi chuyển sang iframe khác
         driver.switch_to.default_content()
@@ -109,10 +121,10 @@ def get_yopmail_otp(email_address: str) -> str | None:
 
 # --- VÍ DỤ SỬ DỤNG ---
 if __name__ == "__main__":
-    test_email_user = "testotpsmemoney02"
+    test_email_user = "duongminhthui002@yopmail.com"
 
     # Gửi một email chứa mã OTP (ví dụ: 987654) đến địa chỉ trên trước khi chạy
-    otp_code = get_yopmail_otp(test_email_user)
+    otp_code = get_yopmail_otp(test_email_user, "Send Otp User")
 
     if otp_code:
         print(f"\nKết quả cuối cùng: Mã OTP là: {otp_code}")

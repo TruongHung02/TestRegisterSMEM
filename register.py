@@ -268,7 +268,7 @@ def run_register(driver, test_data, fields, db_config, idx, result_file=None):
 
         # Nếu đăng ký lưu DB thành công, lấy mã OTP
         if (driver.current_url != current_url) and (duplicate_msg is None):
-            OTP = get_yopmail_otp(test_data["email"])
+            OTP = get_yopmail_otp(email_address=test_data["email"], email_subject="Send Otp User")
             if OTP is not None:
                 wait.until(
                     EC.presence_of_element_located(
