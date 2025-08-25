@@ -269,20 +269,33 @@ def run_register(driver, test_data, fields, db_config, idx, result_file=None):
         # Nếu đăng ký lưu DB thành công, lấy mã OTP
         if (driver.current_url != current_url) and (duplicate_msg is None):
             OTP = get_yopmail_otp(email_address=test_data["email"], email_subject="Send Otp User")
-            if OTP is not None:
-                wait.until(
-                    EC.presence_of_element_located(
-                        (By.XPATH, fields["register.otp_input_xpath"])
-                    )
-                ).send_keys(OTP)
 
-                # Ấn tiếp tục
-                wait.until(
-                    EC.presence_of_element_located(
-                        (By.XPATH, fields["register.otp_confirm_button_xpath"])
-                    )
-                ).click()
-                time.sleep(5)
+            # Thử 3 lần, nếu không nhận được OTP thì ấn gửi lại
+            for i in range(3):
+                if OTP is not None:
+                    wait.until(
+                        EC.presence_of_element_located(
+                            (By.XPATH, fields["register.otp_input_xpath"])
+                        )
+                    ).send_keys(OTP)
+
+                    # Ấn tiếp tục
+                    wait.until(
+                        EC.presence_of_element_located(
+                            (By.XPATH, fields["register.otp_confirm_button_xpath"])
+                        )
+                    ).click()
+                    time.sleep(5)
+                    break
+                else:
+                    wait.until(
+                        EC.presence_of_element_located(
+                            (By.XPATH, fields["register.otp_resend_button_xpath"])
+                        )
+                    ).click()
+                    time.sleep(10)
+                    OTP = get_yopmail_otp(email_address=test_data["email"], email_subject="Send Otp User")
+                
             if result_file:
                 if OTP is not None:
                     result_file.write("[PASS] Nhập OTP thành công\n")
@@ -296,9 +309,3 @@ def run_register(driver, test_data, fields, db_config, idx, result_file=None):
         return None
 
 
-# ✅ BƯỚC 0: Check trùng dữ liệu trong DB (bật nếu cần)
-#     duplicate_msg = check_duplicate_in_db(test_data, db_config)
-#     if duplicate_msg:
-#         if result_file:
-#             result_file.write(f"[FAIL] [{idx}] Email hoặc SĐT đã tồn tại: {duplicate_msg}\n")
-#         return None

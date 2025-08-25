@@ -21,6 +21,7 @@ register_button_xpath=//button[contains(., 'Đăng ký')]
 error_message_xpath=//p[contains(@id,'-form-item-description') or contains(@class,'ant-form-item-explain') or ancestor::div[contains(@class,'ant-form-item-has-error')]]
 otp_input_xpath=//*[@id="undefined-form-item"]
 otp_confirm_button_xpath=/html/body/div[3]/div/div/div[1]/div/form/div/button
+otp_resend_button_xpath=/html/body/div[3]/div/div/div[1]/div/form/div/p[3]/b
 
 
 
